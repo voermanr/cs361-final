@@ -1,7 +1,10 @@
-class Waypoint
+# frozen_string_literal: true
+
+class Waypoint < GeographicCoordinate
   attr_reader :lat, :lon, :ele, :name, :type
 
   def initialize(lon, lat, ele = nil, name = nil, type = nil)
+    super(lon, lat, ele)
     @lat = lat
     @lon = lon
     @ele = ele
@@ -26,5 +29,8 @@ class Waypoint
       message += '}'
     end
     message += '}'
+
+    message
   end
 end
+
