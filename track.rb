@@ -8,7 +8,7 @@ class Track
     @segments = segment_objects
   end
 
-  # I'm not going to touch the contents opf this message, as the json function in Waypoint sucked enough of my time.
+  # I'm not going to touch the contents of this message, as the json function in Waypoint sucked enough of my time.
   def json
     j = '{'
     j += '"type": "Feature", '
