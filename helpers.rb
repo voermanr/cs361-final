@@ -33,7 +33,4 @@ class GeographicCoordinate < Point
     @ele
   end
 
-  def json
-
-  end
 end
