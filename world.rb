@@ -14,6 +14,8 @@ class World
     "{\"type\": \"FeatureCollection\",\"features\": [#{features_json}]}"
   end
 
+  private
+
   def features_json
     message = ''
     @features.each_with_index do |f, i|
