@@ -11,12 +11,15 @@ class World
   end
 
   def json(_indent = 0)
-    # Write stuff
-    message = '{"type": "FeatureCollection","features": ['
+    "{\"type\": \"FeatureCollection\",\"features\": [#{features_json}]}"
+  end
+
+  def features_json
+    message = ''
     @features.each_with_index do |f, i|
       message += ',' if i != 0
       message += f.json
     end
-    "#{message}]}"
+    message
   end
 end
