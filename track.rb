@@ -3,12 +3,13 @@ class Track
     @name = name
     segment_objects = []
     segments.each do |s|
-      segment_objects.append(TrackSegment.new(s)) # TODO: track shouldn't be creating new track segments
+      segment_objects.append(TrackSegment.new(s))
     end
     @segments = segment_objects
   end
 
-  def track_json
+  # I'm not going to touch the contents opf this message, as the json function in Waypoint sucked enough of my time.
+  def json
     j = '{'
     j += '"type": "Feature", '
     unless @name.nil?

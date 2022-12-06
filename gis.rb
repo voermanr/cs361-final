@@ -27,7 +27,7 @@ def main
 
   world = World.new('My Data', [w, w2, t, t2])
 
-  puts world.to_geojson
+  puts world.json
 end
 
 main if File.identical?(__FILE__, $PROGRAM_NAME)

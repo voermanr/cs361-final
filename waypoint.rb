@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Waypoint < GeographicCoordinate
   attr_reader :latitude, :longitude, :elevation, :name, :type
 
@@ -11,6 +12,8 @@ class Waypoint < GeographicCoordinate
     @type = type
   end
 
+  # I am having tons of trouble trying to make this function more manageable.
+  # I've spent a few hours getting nowhere on this json function.
   def json(_indent = 0)
     # if name is not nil or type is not nil
 
