@@ -1,3 +1,22 @@
+## * * Ross's Comments * *
+
+I feel like I kind of got lost in the weeds on this assignment. 
+I spent a lot of time trying to make the functions cleaner, but 
+couldn't find the right configuration. 
+
+I've made what changes I could to make the code more understandable 
+to me. I feel like some of the more functional things like interfaces,
+or some dependencies inside classes are beyond my abilities to decouple,
+and also have the code compile. 
+
+The functions that I renamed `json` need a lot of work. I spent maybe 
+3 or 4 hours trying to get them to work nicely, but I kept having to 
+roll back my changes because I couldn't get it to compile. The 
+biggest problem with them is their lengths. I also don't like how they 
+are constructed, and think that it needs to go into separate functions.
+
+
+
 ## GIS Tool
 
 Geographic Information Systems program.
