@@ -32,17 +32,11 @@ class Waypoint < GeographicCoordinate
     construct_json_message + message.to_s
   end
 
+
+
   private
 
   def construct_json_message
-    "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\",\"coordinates\": #{coordinates_json}]},"
-  end
-
-  def coordinates_json
-    "[#{@longitude},#{@latitude}" + elevation_json
-  end
-
-  def elevation_json
-    !elevation.nil? ? ",#{@elevation}" : ''
+    "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\",\"coordinates\": #{coordinates_json}},"
   end
 end
