@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Track
   def initialize(segments, name = nil)
     @name = name
@@ -10,34 +12,38 @@ class Track
 
   # I'm not going to touch the contents of this message, as the json function in Waypoint sucked enough of my time.
   def json
-    j = '{'
-    j += '"type": "Feature", '
+    message = '{'
+    message += '"type": "Feature", '
     unless @name.nil?
-      j += '"properties": {'
-      j += "\"title\": \"#{@name}\""
-      j += '},'
+      message += '"properties": {'
+      message += "\"title\": \"#{@name}\""
+      message += '},'
     end
-    j += '"geometry": {'
-    j += '"type": "MultiLineString",'
-    j += '"coordinates": ['
+    message += '"geometry": {'
+    message += '"type": "MultiLineString",'
+    message += '"coordinates": ['
     # Loop through all the segment objects
     @segments.each_with_index do |s, index|
-      j += ',' if index.positive?
-      j += '['
+      message += ',' if index.positive?
+      message += '['
       # Loop through all the coordinates in the segment
-      tsj = ''
+      coordinates_block = ''
       s.coordinates.each do |c|
-        tsj += ',' if tsj != ''
+        coordinates_block += ',' if coordinates_block != ''
         # Add the coordinate
-        tsj += '['
-        tsj += "#{c.longitude},#{c.latitude}"
-        tsj += ",#{c.elevation}" unless c.elevation.nil?
-        tsj += ']'
+
+        # I can't figure out how to call the coordinate_json function of c,
+        # but this code should be replaced with something like
+        #   coordinates_block += c.coordinates_json
+        coordinates_block += '['
+        coordinates_block += "#{c.longitude},#{c.latitude}"
+        coordinates_block += ",#{c.elevation}" unless c.elevation.nil?
+        coordinates_block += ']'
       end
-      j += tsj
-      j += ']'
+      message += coordinates_block
+      message += ']'
     end
-    "#{j}]}}"
+    "#{message}]}}"
   end
 end
 
