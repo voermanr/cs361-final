@@ -1,23 +1,22 @@
 # frozen_string_literal: true
 
 class Waypoint < GeographicCoordinate
-  attr_reader :lat, :lon, :ele, :name, :type
+  attr_reader :latitude, :longitude, :elevation, :name, :type
 
   def initialize(lon, lat, ele = nil, name = nil, type = nil)
     super(lon, lat, ele)
-    @lat = lat
-    @lon = lon
-    @ele = ele
+    @latitude = lat
+    @longitude = lon
+    @elevation = ele
     @name = name
     @type = type
   end
 
-  def get_waypoint_json(_indent = 0)
-    message = '{"type": "Feature",'
+  def json(_indent = 0)
     # if name is not nil or type is not nil
-    message += '"geometry": {"type": "Point","coordinates": '
-    message += "[#{@lon},#{@lat}"
-    message += ",#{@ele}" unless ele.nil?
+
+    message = ''
+    message += ",#{@elevation}" unless elevation.nil?
     message += ']},'
     if !name.nil? || !type.nil?
       message += '"properties": {'
@@ -30,7 +29,16 @@ class Waypoint < GeographicCoordinate
     end
     message += '}'
 
-    message
+    construct_json_message + "#{message}"
+  end
+
+  private
+
+  def construct_json_message
+    "{\"type\": \"Feature\"," + '"geometry": {"type": "Point","coordinates": ' + coordinates_json
+  end
+
+  def coordinates_json
+    "[#{@longitude},#{@latitude}"
   end
 end
-

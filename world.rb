@@ -8,17 +8,18 @@ class World
     @features.append(feature)
   end
 
+  # TODO: should be asking for "what is your JSON?" not "Are you a class?"
   def to_geojson(_indent = 0)
     # Write stuff
-    s = '{"type": "FeatureCollection","features": ['
+    message = '{"type": "FeatureCollection","features": ['
     @features.each_with_index do |f, i|
-      s += ',' if i != 0
+      message += ',' if i != 0
       if f.instance_of?(Track)
-        s += f.track_json
+        message += f.track_json
       elsif f.instance_of?(Waypoint)
-        s += f.get_waypoint_json
+        message += f.json
       end
     end
-    "#{s}]}"
+    "#{message}]}"
   end
 end

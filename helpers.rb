@@ -5,7 +5,7 @@
 
 # Pretending this is a 3rd party object whose implementation I rely on, but disagree with.
 class Point
-  attr_reader :lat, :lon, :ele
+  attr_reader :latitude, :longitude, :elevation
 
   def initialize(lon, lat, ele = nil)
     @lon = lon
@@ -31,5 +31,9 @@ class GeographicCoordinate < Point
 
   def elevation
     @ele
+  end
+
+  def json
+
   end
 end

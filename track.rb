@@ -3,9 +3,8 @@ class Track
     @name = name
     segment_objects = []
     segments.each do |s|
-      segment_objects.append(TrackSegment.new(s))
+      segment_objects.append(TrackSegment.new(s)) # TODO: track shouldn't be creating new track segments
     end
-    # set segments to segment_objects
     @segments = segment_objects
   end
 
@@ -30,8 +29,8 @@ class Track
         tsj += ',' if tsj != ''
         # Add the coordinate
         tsj += '['
-        tsj += "#{c.lon},#{c.lat}"
-        tsj += ",#{c.ele}" unless c.ele.nil?
+        tsj += "#{c.longitude},#{c.latitude}"
+        tsj += ",#{c.elevation}" unless c.elevation.nil?
         tsj += ']'
       end
       j += tsj
