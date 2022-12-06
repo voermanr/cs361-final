@@ -33,4 +33,15 @@ class GeographicCoordinate < Point
     @ele
   end
 
+  def coordinates_json
+    "[#{@longitude},#{@latitude}#{elevation_json}]"
+  end
+
+  private
+
+  def elevation_json
+    !elevation.nil? ? ",#{@elevation}" : ''
+  end
+
 end
+
