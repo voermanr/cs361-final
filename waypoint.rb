@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Waypoint < GeographicCoordinate
   attr_reader :latitude, :longitude, :elevation, :name, :type
 
@@ -16,8 +15,6 @@ class Waypoint < GeographicCoordinate
     # if name is not nil or type is not nil
 
     message = ''
-    message += ",#{@elevation}" unless elevation.nil?
-    message += ']},'
     if !name.nil? || !type.nil?
       message += '"properties": {'
       message += "\"title\": \"#{@name}\"" unless name.nil?
@@ -29,16 +26,20 @@ class Waypoint < GeographicCoordinate
     end
     message += '}'
 
-    construct_json_message + "#{message}"
+    construct_json_message + message.to_s
   end
 
   private
 
   def construct_json_message
-    "{\"type\": \"Feature\"," + '"geometry": {"type": "Point","coordinates": ' + coordinates_json
+    "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\",\"coordinates\": #{coordinates_json}]},"
   end
 
   def coordinates_json
-    "[#{@longitude},#{@latitude}"
+    "[#{@longitude},#{@latitude}" + elevation_json
+  end
+
+  def elevation_json
+    !elevation.nil? ? ",#{@elevation}" : ''
   end
 end
