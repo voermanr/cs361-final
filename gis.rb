@@ -15,7 +15,10 @@ def main
     GeographicCoordinate.new(-121, 46)
   ]
 
-  ts2 = [GeographicCoordinate.new(-121, 45), GeographicCoordinate.new(-121, 46)]
+  ts2 = [
+    GeographicCoordinate.new(-121, 45),
+    GeographicCoordinate.new(-121, 46)
+  ]
 
   ts3 = [
     GeographicCoordinate.new(-121, 45.5),
